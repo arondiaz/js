@@ -40,3 +40,16 @@ let distinto = !value2;
 console.log(distinto);
 console.log(or);
 console.log(result);
+
+let val1 = 12;
+let val2 = 24;
+let val3 = 25;
+let val4 = 92;
+let val5 = 91;
+
+
+// let op = (val5 > val2 && val4 < val3) || (!(val1 === val2) || val3 != val3);
+
+let op = true;
+
+console.log(op);
