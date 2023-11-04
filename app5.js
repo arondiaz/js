@@ -18,6 +18,6 @@ let coins = ["btc", "eth", "usdt", "sol"]
  let micro = pc["micro"]
  let ram = pc["ram"]
 
-let components = `micro ${micro} and ${ram} of ram`
+let components = ` micro ${micro} and <br> ${ram} of ram`
 
- console.log(components);
+ document.write(components);
