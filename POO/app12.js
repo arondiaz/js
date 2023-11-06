@@ -61,14 +61,6 @@ class Apple extends Celular {
   }
 }
 
-// class Samsung extends Celular() {
-//   constructor() {}
-// }
-
-// class Motorola extends Celular() {
-//   constructor() {}
-// }
-
 const IPhone15 = new Apple("rojo", 200, 1080, 48, 6, "FaceID X");
 const IPhone13 = new Apple("verde", 180, 1080, 12, 4, "FaceID")
 
