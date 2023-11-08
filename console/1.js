@@ -35,3 +35,9 @@ console.groupEnd();
 for (let i = 0; i < 5; i++) {
   console.count("Iteración del bucle");
 }
+
+
+//temporizador
+console.time()
+console.timeLog();
+console.timeEnd()
