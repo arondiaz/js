@@ -124,3 +124,7 @@ document.write(number);
 //La diferencia principal es que forEach se utiliza para iterar sobre un array y realizar una operación en cada elemento, pero no crea un nuevo array.
 //Mientras que filter se utiliza para crear un nuevo array que contiene solo los elementos que cumplen una condición dada.
 // si deseas realizar una acción en cada elemento del array, utiliza forEach; si necesitas crear un nuevo array con elementos filtrados según una condición, utiliza filter.
+
+
+
+
