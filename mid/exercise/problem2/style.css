@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template-rows: 50px;
+  grid-template-columns: repeat(4, minmax(min-content, max-content));
+  grid-auto-rows: 50px;
+}
+
+
+.grid-item{
+    padding: 10px;
+    border: 1px solid slateblue;
+    margin: 5px;
+}
