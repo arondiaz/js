@@ -1,0 +1,13 @@
+body{
+    background: rgb(13, 66, 64);
+}
+
+.seleccionado{
+    font-size: 32px;
+    color: white;
+}
+
+.input-prueba{
+    margin-top: 20px;
+    color: whites;
+}

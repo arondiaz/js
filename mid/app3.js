@@ -91,3 +91,46 @@ button.addEventListener("click", (e) => {
 // keyup cuando los 2 eventos anteriores concluyeron consecutivamente.
 
 /*Eventos de interfaz */
+//error: utilizado en la carga de archivos multimedia
+//ejemplo:
+//  const img = document.querySelector(".img-producto")
+// img.addEventListener("error"), () => {
+//   console.log("error al cargar imagen");
+// }
+
+//load
+
+//beforeunload: antes de irte de la seccion o pagina
+//unload: cuando te vas de la seccion o pagina
+
+//resize: cuando cambia la resolucion de la ventana
+
+//scroll
+
+//select
+// registra lo que seleccionamos (al hacer click y arrastrar un texto.)
+
+const input = document.querySelector(".input-prueba");
+const container = document.querySelector(".seleccionado");
+
+input.addEventListener("select", (e) => {
+  let start = e.target.selectionStart;
+  let end = e.target.selectionEnd;
+  let textoCompleto = input.value;
+  container.innerHTML = textoCompleto.substring(start, end);
+
+});
+
+
+
+//
+//// Temporizadores
+//
+
+//setTimeout, ejecuta la funcion despues del tiempo indicado en milisegundos
+
+// setTimeout(() => {
+//   document.write("Hola")
+// },2000)
+
+//setInterval(), ejecuta la funcion cada vez que finalice el intervalo, por ejemplo cada 5 seg se ejecuta
