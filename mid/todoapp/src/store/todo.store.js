@@ -20,32 +20,52 @@ const loadStore = () => {
   throw new Error("Not implemented");
 };
 
+//especifica que tipo de filtro y sino usa todos como defecto.
 const getTodo = (filter = Filters.All) => {
-  throw new Error("Not implemented");
+  switch (filter) {
+    case Filters.All:
+      return [...state.todos];
+
+    case Filters.Completed:
+      return state.todos.filter((todo) => todo.done);
+
+    case Filters.Pending:
+      return state.todos.filter((todo) => !todo.done);
+
+    default:
+      throw new Error(`${filter} is not valid`);
+  }
 };
 
 const addTodo = (description) => {
-  throw new Error("Not implemented");
+  if (!description) throw new Error("Not implemented");
+
+  state.todos.push(new Todo(description));
 };
 
 const changeTodo = (todoId) => {
-  throw new Error("Not implemented");
+  state.todos = state.todos.map((todo) => {
+    if (todo.id === todoId) {
+      todo.done = !todo.done;
+    }
+    return todo;
+  });
 };
 
 const deleteTodo = (todoId) => {
-  throw new Error("Not implemented");
+  state.todos = state.todos.filter((todo) => todo.id !== todoId);
 };
 
 const deleteCompleted = () => {
-  throw new Error("Not implemented");
+  state.todos = state.todos.filter((todo) => todo.done);
 };
 
 const setFilter = (newFilter = Filters.All) => {
-  throw new Error("Not implemented");
+  state.filter = newFilter;
 };
 
 const getCurrentFilter = () => {
-  throw new Error("Not implemented");
+  return state.filter;
 };
 
 export default {
