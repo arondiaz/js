@@ -1,4 +1,5 @@
 //Promise,
+//con la promesa tenemos acceso a resolve y reject
 
 const aplicarDescuento = new Promise((resolve, reject) => {
   const descuento = true;
