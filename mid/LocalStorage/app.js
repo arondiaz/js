@@ -38,3 +38,11 @@ console.log(data);
 const dataUser = localStorage.getItem("usuario");
 //parse le da formato
 console.log(JSON.parse(dataUser));
+
+
+
+//eliminar elementos del localStorage
+
+localStorage.removeItem("usuario")
+
+
