@@ -38,9 +38,7 @@ const josh = new People("Josh", 7800, 3897979997);
 console.log(josh);
 console.log(josh.infoClient());
 
-
-People.prototype.showNumber = function() {
-    return `The phone number is ${this.phone}`
-    
-}
+People.prototype.showNumber = function () {
+  return `The phone number is ${this.phone}`;
+};
 console.log(josh.showNumber());
