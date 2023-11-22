@@ -168,18 +168,16 @@ function addTweet(e) {
 }
 
 function showError(mensaje) {
-
-console.log(errorParrafo);
   if (!errorParrafo) {
     errorParrafo = document.createElement("P");
-
+    errorParrafo.textContent = mensaje;
     errorParrafo.classList.add("error");
     const container = document.querySelector("#contenido");
 
     container.appendChild(errorParrafo);
   }
 
-  errorParrafo.textContent = mensaje;
+ 
   limpiarAlerta(errorParrafo);
 }
 
