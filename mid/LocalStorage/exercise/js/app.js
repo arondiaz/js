@@ -177,7 +177,6 @@ function showError(mensaje) {
     container.appendChild(errorParrafo);
   }
 
- 
   limpiarAlerta(errorParrafo);
 }
 
@@ -195,12 +194,23 @@ function limpiarAlerta(parrafo) {
 function showTweets() {
   cleanHTML();
   tweets.forEach((tweet) => {
+    const deleteTweet = document.createElement("A");
+    deleteTweet.textContent = "X";
+    deleteTweet.classList.add("borrar-tweet");
+
+    deleteTweet.onclick = () => {
+      deleteX(tweet.id);
+    };
+
     let li = document.createElement("LI");
     li.textContent = tweet.text;
     listTweets.appendChild(li);
+
+    li.appendChild(deleteTweet);
   });
 
   addToLocalStorage();
+  deleteX();
 }
 
 function cleanHTML() {
@@ -211,4 +221,9 @@ function cleanHTML() {
 
 function addToLocalStorage() {
   localStorage.setItem("tweetKey", JSON.stringify(tweets));
+}
+
+function deleteX(id) {
+  tweets = tweets.filter((tweet) => id !== tweet.id);
+  showTweets();
 }
