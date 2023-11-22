@@ -132,32 +132,55 @@
 const addBtn = document.querySelector("#addbtn");
 const listTweets = document.querySelector("#lista-tweets");
 const textArea = document.querySelector("#tweet");
+const form = document.querySelector("#formulario");
+let tweets = [];
+let errorParrafo;
 
 listeners();
-function listeners(params) {
+function listeners() {
   addBtn.addEventListener("click", addTweet);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    tweets = JSON.parse(localStorage.getItem("tweetKey")) || [];
+
+    showTweets();
+  });
 }
 
 function addTweet(e) {
   e.preventDefault();
 
   if (textArea.value.trim() === "") {
-    pepito("Esta vacio");
+    showError("Esta vacio");
     return;
   }
+
+  tweetObj = {
+    id: Date.now(),
+    text: textArea.value,
+  };
+
+  tweets = [...tweets, tweetObj];
+
+  showTweets();
+
+  form.reset();
 }
 
-function pepito(mensaje) {
-  const parrafo = document.createElement("P");
-  parrafo.textContent = mensaje;
-  parrafo.classList.add("error");
+function showError(mensaje) {
 
-  const container = document.querySelector("#contenido");
+console.log(errorParrafo);
+  if (!errorParrafo) {
+    errorParrafo = document.createElement("P");
 
-  container.appendChild(parrafo);
+    errorParrafo.classList.add("error");
+    const container = document.querySelector("#contenido");
 
-  limpiarAlerta(parrafo);
+    container.appendChild(errorParrafo);
+  }
 
+  errorParrafo.textContent = mensaje;
+  limpiarAlerta(errorParrafo);
 }
 
 function limpiarAlerta(parrafo) {
@@ -171,9 +194,23 @@ function limpiarAlerta(parrafo) {
   }
 }
 
-// function borrarDuplicados(e) {
+function showTweets() {
+  cleanHTML();
+  tweets.forEach((tweet) => {
+    let li = document.createElement("LI");
+    li.textContent = tweet.text;
+    listTweets.appendChild(li);
+  });
 
-//   if (e) {
-//     console.log(e);
-//   }
-// }
+  addToLocalStorage();
+}
+
+function cleanHTML() {
+  while (listTweets.firstChild) {
+    listTweets.removeChild(listTweets.firstChild);
+  }
+}
+
+function addToLocalStorage() {
+  localStorage.setItem("tweetKey", JSON.stringify(tweets));
+}
