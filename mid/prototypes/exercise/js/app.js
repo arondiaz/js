@@ -4,6 +4,52 @@ function Seguro(marca, año, tipo) {
   this.tipo = tipo;
 }
 
+Seguro.prototype.cotizarSeguro = function () {
+  /* 
+  1= americano 1.15
+  2= asiatico 1.05
+  3= europeo 1.35
+  */
+
+  let cantidad;
+  const base = 2000;
+
+  console.log(this.marca);
+  switch (this.marca) {
+    case "1":
+      cantidad = base * 1.15;
+      break;
+
+    case "2":
+      cantidad = base * 1.05;
+      break;
+    case "3":
+      cantidad = base * 1.35;
+      break;
+
+    default:
+      break;
+  }
+
+  //leer el año
+  const diferencia = new Date().getFullYear() - this.year;
+
+  //cada año que la diferencia es mayor, el costo va a reducirse un 3%
+  cantidad -= (diferencia * 3 + cantidad) / 100;
+
+  /*
+  Si el seguro es basico se multiplica por un 30% mas 
+  si el seguro es completo se multiplica por un 50% mas
+  */
+
+  if (this.tipo === "basico") {
+    cantidad *= 1.3;
+  } else {
+    cantidad *= 1.5;
+  }
+
+  return cantidad;
+};
 function UI() {}
 
 UI.prototype.llenarOpciones = () => {
@@ -40,6 +86,20 @@ UI.prototype.mostarMensaje = (mensaje, tipo) => {
   }, 2500);
 };
 
+UI.prototype.mostrarResultado = (total, seguro) => {
+  //
+  const div = document.createElement("DIV");
+  div.classList.add("mt-10");
+
+  div.innerHTML = `
+  <p class="header"> Tu resumen </p>
+  <p class="font-bold"> Total: ${total}</p>
+  `;
+
+  const resultadoDiv = document.querySelector("#resultado");
+  resultadoDiv.appendChild(div);
+};
+
 const ui = new UI();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -66,7 +126,13 @@ function cotizarSeguro(e) {
 
   if (marca === "" || year === "" || tipo === "") {
     ui.mostarMensaje("Todos los campos son obligatorios", "error");
-  } else {
-    ui.mostarMensaje("Cotizando...", "correcto");
   }
+
+  ui.mostarMensaje("Cotizando...", "correcto");
+
+  //Instanciar seguro
+  const seguro = new Seguro(marca, year, tipo);
+  const total = seguro.cotizarSeguro();
+console.log(total);
+  ui.mostrarResultado(total, seguro);
 }
