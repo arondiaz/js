@@ -4,7 +4,7 @@ const form = document.querySelector("#agregar-gasto");
 const gastoListado = document.querySelector("#gastos ul");
 
 listeners();
-function listeners(params) {
+function listeners() {
   document.addEventListener("DOMContentLoaded", preguntarPresupuesto);
 
   form.addEventListener("submit", agregarGasto);
@@ -19,7 +19,20 @@ class Presupuesto {
 
   nuevoGasto(gasto) {
     this.gastos = [...this.gastos, gasto];
-    console.log(this.gastos);
+    this.calcularRestante();
+  }
+
+  calcularRestante() {
+    const gastado = this.gastos.reduce(
+      (total, gasto) => (total = gasto.cantidad),
+      0
+    );
+    this.restante = this.presupuesto - gastado;
+  }
+
+  eliminarGasto(id) {
+    this.gastos = this.gastos.filter((gasto) => gasto.id !== id);
+    this.calcularRestante();
   }
 }
 
@@ -49,9 +62,8 @@ class UI {
     }, 2500);
   }
 
-  agregarGastoListado(gastos) {
-
-    this.limpiarHTML()
+  mostrarGastos(gastos) {
+    this.limpiarHTML();
     gastos.forEach((gasto) => {
       const { nombre, cantidad, id } = gasto;
 
@@ -69,16 +81,23 @@ class UI {
       const btnBorrar = document.createElement("button");
       btnBorrar.textContent = "borrar";
       btnBorrar.classList.add("btn", "btn-danger", "borrar-gasto");
+      btnBorrar.onclick = () => {
+        eliminarGasto(id);
+      };
 
       li.appendChild(btnBorrar);
       gastoListado.appendChild(li);
     });
   }
 
-  limpiarHTML(){
-    while(gastoListado.firstChild){
-        gastoListado.removeChild(gastoListado.firstChild)
+  limpiarHTML() {
+    while (gastoListado.firstChild) {
+      gastoListado.removeChild(gastoListado.firstChild);
     }
+  }
+
+  actualizarRestante(restante) {
+    document.querySelector("#restante").textContent = restante;
   }
 }
 
@@ -124,8 +143,16 @@ function agregarGasto(e) {
 
   ui.imprimirAlerta("Gasto agregado");
 
-  const { gastos } = presupuesto;
-  ui.agregarGastoListado(gastos);
-
+  const { gastos, restante } = presupuesto;
+  ui.mostrarGastos(gastos);
+  ui.actualizarRestante(restante);
   form.reset();
+}
+
+function eliminarGasto(id) {
+  presupuesto.eliminarGasto(id);
+  const { gastos, restante } = presupuesto;
+  ui.mostrarGastos(gastos);
+
+  ui.actualizarRestante(restante);
 }
