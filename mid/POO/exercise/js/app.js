@@ -48,6 +48,38 @@ class UI {
       divMensaje.remove();
     }, 2500);
   }
+
+  agregarGastoListado(gastos) {
+
+    this.limpiarHTML()
+    gastos.forEach((gasto) => {
+      const { nombre, cantidad, id } = gasto;
+
+      const li = document.createElement("LI");
+      li.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+
+      //2 formas de agregar un id y asignarle el valor.
+      // dataset agrega la palabra data- (+ lo que va al lado del punto)
+      li.setAttribute("data-id", id);
+      //   li.dataset.id = id;
+
+      li.innerHTML = `${nombre} <span class="badge badge-primary badge-pill"> ${cantidad} </span>`;
+
+      const btnBorrar = document.createElement("button");
+      btnBorrar.textContent = "borrar";
+      btnBorrar.classList.add("btn", "btn-danger", "borrar-gasto");
+
+      li.appendChild(btnBorrar);
+      gastoListado.appendChild(li);
+    });
+  }
+
+  limpiarHTML(){
+    while(gastoListado.firstChild){
+        gastoListado.removeChild(gastoListado.firstChild)
+    }
+  }
 }
 
 const ui = new UI();
@@ -90,5 +122,10 @@ function agregarGasto(e) {
   const gasto = { nombre, cantidad, id: Date.now() };
   presupuesto.nuevoGasto(gasto);
 
-  ui.imprimirAlerta("Gasto agregado")
+  ui.imprimirAlerta("Gasto agregado");
+
+  const { gastos } = presupuesto;
+  ui.agregarGastoListado(gastos);
+
+  form.reset();
 }
