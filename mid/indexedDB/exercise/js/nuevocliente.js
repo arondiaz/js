@@ -32,36 +32,76 @@
     if (name === "" || email === "" || telefono === "" || empresa === "") {
       imprimirAlerta("Todos los campos son obligatorios", "error");
     }
+
+    //crear un objeto con la informacion
+    const cliente = {
+      name,
+      email,
+      telefono,
+      empresa,
+      id: Date.now(),
+    };
+    crearNuevoCliente(cliente);
+  }
+
+  function crearNuevoCliente(cliente) {
+    const transaction = DB.transaction(["crm"], "readwrite");
+    const objectStore = transaction.objectStore("crm");
+
+    objectStore.add(cliente);
+
+    transaction.onerror = function () {
+      imprimirAlerta("El usuario ya existe");
+    };
+
+    transaction.oncomplete = function () {
+      console.log("sdadf");
+      imprimirAlerta("Cliente agregado correctamente");
+      
+      setTimeout(() => {
+        window.location.href = "index.html"
+      }, 2500);
+    };
   }
 
   function imprimirAlerta(mensaje, tipo) {
+    const alert = document.querySelector(".alerta");
 
-    const alert = document.querySelector(".alerta")
-
-if(!alert){
-    const divMensaje = document.createElement("DIV");
-    divMensaje.classList.add( "px-4","py-3","rounded","max-w-lg","mx-auto","mt-6","text-center", "border", "alerta"
-    );
-
-    if (tipo === "error") {
-      divMensaje.classList.add("bg-red-100", "border-red-400", "text-red-700");
-    } else {
+    if (!alert) {
+      const divMensaje = document.createElement("DIV");
       divMensaje.classList.add(
-        "bg-green-100",
-        "border-green-400",
-        "text-green-700"
+        "px-4",
+        "py-3",
+        "rounded",
+        "max-w-lg",
+        "mx-auto",
+        "mt-6",
+        "text-center",
+        "border",
+        "alerta"
       );
+
+      if (tipo === "error") {
+        divMensaje.classList.add(
+          "bg-red-100",
+          "border-red-400",
+          "text-red-700"
+        );
+      } else {
+        divMensaje.classList.add(
+          "bg-green-100",
+          "border-green-400",
+          "text-green-700"
+        );
+      }
+
+      divMensaje.textContent = mensaje;
+
+      form.appendChild(divMensaje);
+
+      setTimeout(() => {
+        divMensaje.remove();
+      }, 2500);
     }
-
-    divMensaje.textContent = mensaje;
-
-    form.appendChild(divMensaje)
-
-    setTimeout(() => {
-        divMensaje.remove()
-    }, 2500);
   }
-
-}
-
 })();
