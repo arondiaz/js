@@ -49,8 +49,6 @@
       objectStore.createIndex("telefono", "telefono", { unique: false });
       objectStore.createIndex("empresa", "empresa", { unique: false });
       objectStore.createIndex("id", "id", { unique: true });
-
-      console.log("Hi");
     };
   }
 
@@ -62,7 +60,6 @@
 
     abrirConexion.onsuccess = function () {
       DB = abrirConexion.result;
-      console.log(DB);
 
       const objectStore = DB.transaction("crm").objectStore("crm");
 
