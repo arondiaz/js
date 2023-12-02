@@ -49,7 +49,7 @@ function mostrarAlerta(msg) {
 
 //esperando a que se active la apiKey
 function consultarAPI(city, country) {
-  const apiId = '226c26da59da26a9eb31522ae18ae538';
+  const apiId = ""
 
   const url = 
   `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiId}`;
