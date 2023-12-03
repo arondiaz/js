@@ -52,10 +52,11 @@ function mostrarAlerta(msg) {
 
 //esperando a que se active la apiKey
 function consultarAPI(city, country) {
-  const apiKey = "226c26da59da26a9eb31522ae18ae538"
+  const apiKey = "226c26da59da26a9eb31522ae18ae538";
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
 
+  spinner();
   fetch(url)
     .then((response) => {
       return response.json();
@@ -77,16 +78,21 @@ function consultarAPI(city, country) {
 
 function mostrarInfo(data) {
   const {
+    name,
     main: { temp, temp_max, temp_min },
   } = data;
 
   const centigrados = kelvinACentrigrados(temp);
+  const max = kelvinACentrigrados(temp_max);
+  const min = kelvinACentrigrados(temp_min);
+
   const div = document.createElement("DIV");
 
-  div.innerHTML = `<p>Ciudad:</p>
+  //es recomendable usar textContent, en vez de innerHTML
+  div.innerHTML = `<p>Ciudad: ${name}</p>
   <p>${centigrados} &#8451</p>
-  <p></p>>
-
+  <p>Máxima ${max} &#8451</p>
+  <p>Mínima${min} &#8451</p>
   `;
 
   result.appendChild(div);
@@ -100,4 +106,29 @@ function limpiarHtml() {
   while (result.firstChild) {
     result.removeChild(result.firstChild);
   }
+}
+
+function spinner() {
+  limpiarHtml()
+  const divSpinner = document.createElement("DIV");
+  divSpinner.classList.add("sk-fading-circle");
+
+  divSpinner.innerHTML = `
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+  
+  
+  `;
+
+  result.appendChild(divSpinner);
 }
