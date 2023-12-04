@@ -32,6 +32,8 @@ function validarObj(e) {
   if (moneda === "" || criptomoneda === "") {
     return mostrarAlerta("Campos vacíos");
   }
+
+  consultarApi();
 }
 
 function mostrarAlerta(msg) {
@@ -80,4 +82,52 @@ function selectCriptomonedas(criptomonedas) {
 
     select.appendChild(option);
   });
+}
+
+function consultarApi() {
+  const { moneda, criptomoneda } = objCotizar;
+
+  const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
+
+  spinner();
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((cotizacion) => {
+      mostrarCotizacion(cotizacion.DISPLAY[criptomoneda][moneda]);
+    });
+}
+
+function mostrarCotizacion(data) {
+  limpiarHTML();
+  const { HIGHDAY, LOWDAY, PRICE } = data;
+
+  const div = document.createElement("DIV");
+  const price = document.createElement("P");
+  const low = document.createElement("P");
+  const high = document.createElement("P");
+  price.textContent += "Precio actual " + PRICE;
+  high.textContent = `Más alto del día ${HIGHDAY}`;
+  low.textContent += `Más bajo del día ${LOWDAY}`;
+
+  div.appendChild(price);
+  div.appendChild(high);
+  div.appendChild(low);
+
+  result.appendChild(div);
+}
+
+function limpiarHTML() {
+  while (result.firstChild) {
+    result.removeChild(result.firstChild);
+  }
+}
+
+function spinner() {
+  limpiarHTML();
+  const spin = document.createElement("DIV");
+  spin.classList.add("spinner");
+
+  result.appendChild(spin);
 }
