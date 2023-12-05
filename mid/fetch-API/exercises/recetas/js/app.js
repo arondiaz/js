@@ -103,8 +103,6 @@ function mostrarRecetas(platos) {
   function seleccionaReceta(id) {
     const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
 
-    console.log(url);
-
     fetch(url)
       .then((response) => {
         return response.json();
@@ -115,7 +113,6 @@ function mostrarRecetas(platos) {
   }
 
   function mostrarInformacionReceta(receta) {
-    console.log(receta);
     const {
       idMeal,
       strArea,
@@ -124,9 +121,7 @@ function mostrarRecetas(platos) {
       strInstructions,
       strMealThumb,
     } = receta;
-    console.log(receta);
 
-    console.log(strMeal);
     const modalTitle = document.querySelector(".modal-title");
     const modalBody = document.querySelector(".modal-body");
 
@@ -164,6 +159,11 @@ function mostrarRecetas(platos) {
     btnFavorito.classList.add("btn", "btn-danger", "col");
     btnFavorito.textContent = "guardar en favorito";
     btnFavorito.onclick = function () {
+      
+      if(existeLocalStorage(idMeal)){
+        return
+      };
+
       agregarFavorito({
         id: idMeal,
         title: strMeal,
@@ -187,7 +187,18 @@ function mostrarRecetas(platos) {
   function agregarFavorito(receta) {
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
     localStorage.setItem("favoritos", JSON.stringify([...favoritos, receta]));
-    console.log(favoritos);
+  }
+
+  function existeLocalStorage(id) {
+    console.log(id);
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
+
+    for (const fav of favoritos) {
+      if (fav.id === id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   function limpiarHTML(selector) {
