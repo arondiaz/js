@@ -44,7 +44,7 @@ function seleccionarCategorias(e) {
   // console.log(url);
   fetch(url)
     .then((response) => {
-      console.log(response);
+
       return response.json();
     })
     .then((data) => {
@@ -164,7 +164,7 @@ function mostrarRecetas(platos) {
       if (existeLocalStorage(idMeal)) {
         eliminarFavoritos(idMeal);
         btnFavorito.textContent = "Guardar Favoritos";
-        mostrarToast("Eliminado correctamente");
+        mostrarToast("Eliminado correctamente")
         return;
       }
 
@@ -174,7 +174,7 @@ function mostrarRecetas(platos) {
         img: strMealThumb,
       });
       btnFavorito.textContent = "Eliminar Favorito";
-      mostrarToast("Agg correctamente");
+      mostrarToast("Agg correctamente")
     };
 
     const btnCerrar = document.createElement("BUTTON");
@@ -196,7 +196,7 @@ function mostrarRecetas(platos) {
   }
 
   function existeLocalStorage(id) {
-    console.log(id);
+    
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
 
     for (const fav of favoritos) {
