@@ -164,6 +164,7 @@ function mostrarRecetas(platos) {
       if (existeLocalStorage(idMeal)) {
         eliminarFavoritos(idMeal);
         btnFavorito.textContent = "Guardar Favoritos";
+        mostrarToast("Eliminado correctamente");
         return;
       }
 
@@ -173,6 +174,7 @@ function mostrarRecetas(platos) {
         img: strMealThumb,
       });
       btnFavorito.textContent = "Eliminar Favorito";
+      mostrarToast("Agg correctamente");
     };
 
     const btnCerrar = document.createElement("BUTTON");
@@ -209,6 +211,14 @@ function mostrarRecetas(platos) {
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
     const nuevosFavoritos = favoritos.filter((favorito) => favorito.id !== id);
     localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+  }
+
+  function mostrarToast(mensaje) {
+    const toastDiv = document.querySelector("#toast");
+    const toastBody = document.querySelector(".toast-body");
+    toastBody.textContent = mensaje;
+    const toast = new bootstrap.Toast(toastDiv);
+    toast.show();
   }
 
   function limpiarHTML(selector) {
