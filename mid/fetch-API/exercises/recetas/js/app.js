@@ -156,7 +156,38 @@ function mostrarRecetas(platos) {
       }
     }
     modalBody.appendChild(listGroup);
+
+    const modalFooter = document.querySelector(".modal-footer");
+
+    limpiarHTML(modalFooter);
+    const btnFavorito = document.createElement("BUTTON");
+    btnFavorito.classList.add("btn", "btn-danger", "col");
+    btnFavorito.textContent = "guardar en favorito";
+    btnFavorito.onclick = function () {
+      agregarFavorito({
+        id: idMeal,
+        title: strMeal,
+        img: strMealThumb,
+      });
+    };
+
+    const btnCerrar = document.createElement("BUTTON");
+    btnCerrar.classList.add("btn", "btn-danger", "col");
+    btnCerrar.textContent = "cerrar";
+    btnCerrar.onclick = function () {
+      modal.hide();
+    };
+
+    modalFooter.appendChild(btnFavorito);
+    modalFooter.appendChild(btnCerrar);
+
     modal.show();
+  }
+
+  function agregarFavorito(receta) {
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
+    localStorage.setItem("favoritos", JSON.stringify([...favoritos, receta]));
+    console.log(favoritos);
   }
 
   function limpiarHTML(selector) {
