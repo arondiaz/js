@@ -157,18 +157,22 @@ function mostrarRecetas(platos) {
     limpiarHTML(modalFooter);
     const btnFavorito = document.createElement("BUTTON");
     btnFavorito.classList.add("btn", "btn-danger", "col");
-    btnFavorito.textContent = "guardar en favorito";
+    btnFavorito.textContent = existeLocalStorage(idMeal)
+      ? "Eliminar favorito"
+      : "Agregar a favoritos";
     btnFavorito.onclick = function () {
-      
-      if(existeLocalStorage(idMeal)){
-        return
-      };
+      if (existeLocalStorage(idMeal)) {
+        eliminarFavoritos(idMeal);
+        btnFavorito.textContent = "Guardar Favoritos";
+        return;
+      }
 
       agregarFavorito({
         id: idMeal,
         title: strMeal,
         img: strMealThumb,
       });
+      btnFavorito.textContent = "Eliminar Favorito";
     };
 
     const btnCerrar = document.createElement("BUTTON");
@@ -199,6 +203,12 @@ function mostrarRecetas(platos) {
       }
     }
     return false;
+  }
+
+  function eliminarFavoritos(id) {
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
+    const nuevosFavoritos = favoritos.filter((favorito) => favorito.id !== id);
+    localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
   }
 
   function limpiarHTML(selector) {
