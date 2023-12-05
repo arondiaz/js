@@ -136,7 +136,26 @@ function mostrarRecetas(platos) {
     modalBody.innerHTML = `<img class="img-fluid" src="${strMealThumb}" alt="receta ${strMeal}"/>
     <h3>Instrucciones</h3>
     <p>${strInstructions}}</p>
+    <h3>Ingredientes</h3>
     `;
+
+    //
+
+    const listGroup = document.createElement("UL");
+    listGroup.classList.add("list-group");
+    for (let i = 1; i <= 20; i++) {
+      if (receta[`strIngredient${i}`]) {
+        const ingrediente = receta[`strIngredient${i}`];
+        const cantidad = receta[`strMeasure${i}`];
+
+        const ingredienteLi = document.createElement("LI");
+        ingredienteLi.classList.add("list-group-item");
+        ingredienteLi.textContent = `${ingrediente} - ${cantidad}`;
+
+        listGroup.appendChild(ingredienteLi);
+      }
+    }
+    modalBody.appendChild(listGroup);
     modal.show();
   }
 
