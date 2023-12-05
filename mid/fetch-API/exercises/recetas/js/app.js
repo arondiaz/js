@@ -1,6 +1,7 @@
 const selectCategories = document.querySelector("#categorias");
 
 const resultCategories = document.querySelector("#resultado");
+const modal = new bootstrap.Modal("#modal", {});
 
 document.addEventListener("DOMContentLoaded", () => {
   traerCategorias();
@@ -59,7 +60,6 @@ function mostrarRecetas(platos) {
   heading.textContent = platos.length ? "Resultados" : "No hay resultados";
   resultCategories.appendChild(heading);
 
-
   platos.forEach((plato) => {
     const { idMeal, strMeal, strMealThumb } = plato;
     const recetaContenedor = document.createElement("DIV");
@@ -83,6 +83,11 @@ function mostrarRecetas(platos) {
     const recetaButton = document.createElement("BUTTON");
     recetaButton.classList.add("btn", "btn-danger", "w-100");
     recetaButton.textContent = "Ver Receta";
+    recetaButton.dataset.bsTarget = "#modal";
+    recetaButton.dataset.bsToggle = "modal";
+    recetaButton.onclick = function () {
+      seleccionaReceta(idMeal);
+    };
 
     recetaBody.appendChild(recetaHeading);
     recetaBody.appendChild(recetaButton);
@@ -94,6 +99,46 @@ function mostrarRecetas(platos) {
 
     resultCategories.appendChild(recetaContenedor);
   });
+
+  function seleccionaReceta(id) {
+    const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+
+    console.log(url);
+
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((receta) => {
+        mostrarInformacionReceta(receta.meals[0]);
+      });
+  }
+
+  function mostrarInformacionReceta(receta) {
+    console.log(receta);
+    const {
+      idMeal,
+      strArea,
+      strCategory,
+      strMeal,
+      strInstructions,
+      strMealThumb,
+    } = receta;
+    console.log(receta);
+
+    console.log(strMeal);
+    const modalTitle = document.querySelector(".modal-title");
+    const modalBody = document.querySelector(".modal-body");
+
+    modalTitle.textContent = strMeal;
+
+    //en un formulario no es recomendable usar innerHTML ya que el usuario podria inyectar codigo
+    modalBody.innerHTML = `<img class="img-fluid" src="${strMealThumb}" alt="receta ${strMeal}"/>
+    <h3>Instrucciones</h3>
+    <p>${strInstructions}}</p>
+    `;
+    modal.show();
+  }
 
   function limpiarHTML(selector) {
     while (selector.firstChild) {
