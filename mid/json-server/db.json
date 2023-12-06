@@ -1,3 +1,18 @@
 {
-  "clientes": []
+  "clientes": [
+    {
+      "nombre": "asa",
+      "email": "as@gmail.com",
+      "telefono": "4242",
+      "empresa": "asa",
+      "id": 1
+    },
+    {
+      "nombre": "Pepe",
+      "email": "pepe@gmail.com",
+      "telefono": "24244",
+      "empresa": "qee",
+      "id": 2
+    }
+  ]
 }

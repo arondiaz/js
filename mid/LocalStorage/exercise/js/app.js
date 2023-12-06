@@ -129,101 +129,184 @@
 
 // }
 
-const addBtn = document.querySelector("#addbtn");
-const listTweets = document.querySelector("#lista-tweets");
-const textArea = document.querySelector("#tweet");
-const form = document.querySelector("#formulario");
+/////
+
+// const addBtn = document.querySelector("#addbtn");
+// const listTweets = document.querySelector("#lista-tweets");
+// const textArea = document.querySelector("#tweet");
+// const form = document.querySelector("#formulario");
+// let tweets = [];
+// let errorParrafo;
+
+// listeners();
+// function listeners() {
+//   addBtn.addEventListener("click", addTweet);
+
+//   document.addEventListener("DOMContentLoaded", () => {
+//     tweets = JSON.parse(localStorage.getItem("tweetKey")) || [];
+
+//     showTweets();
+//   });
+// }
+
+// function addTweet(e) {
+//   e.preventDefault();
+
+//   if (textArea.value.trim() === "") {
+//     showError("Esta vacio");
+//     return;
+//   }
+
+//   tweetObj = {
+//     id: Date.now(),
+//     text: textArea.value,
+//   };
+
+//   tweets = [...tweets, tweetObj];
+
+//   showTweets();
+
+//   form.reset();
+// }
+
+// function showError(mensaje) {
+//   if (!errorParrafo) {
+//     errorParrafo = document.createElement("P");
+//     errorParrafo.textContent = mensaje;
+//     errorParrafo.classList.add("error");
+//     const container = document.querySelector("#contenido");
+
+//     container.appendChild(errorParrafo);
+//   }
+
+//   limpiarAlerta(errorParrafo);
+// }
+
+// function limpiarAlerta(parrafo) {
+//   const write = document.querySelector("#tweet");
+//   write.addEventListener("input", clean);
+
+//   function clean(e) {
+//     if (e.target.value) {
+//       parrafo.remove();
+//     }
+//   }
+// }
+
+// function showTweets() {
+//   cleanHTML();
+//   tweets.forEach((tweet) => {
+//     const deleteTweet = document.createElement("A");
+//     deleteTweet.textContent = "X";
+//     deleteTweet.classList.add("borrar-tweet");
+
+//     deleteTweet.onclick = () => {
+//       deleteX(tweet.id);
+//     };
+
+//     let li = document.createElement("LI");
+//     li.textContent = tweet.text;
+//     listTweets.appendChild(li);
+
+//     li.appendChild(deleteTweet);
+//   });
+
+//   addToLocalStorage();
+//   deleteX();
+// }
+
+// function cleanHTML() {
+//   while (listTweets.firstChild) {
+//     listTweets.removeChild(listTweets.firstChild);
+//   }
+// }
+
+// function addToLocalStorage() {
+//   localStorage.setItem("tweetKey", JSON.stringify(tweets));
+// }
+
+// function deleteX(id) {
+//   tweets = tweets.filter((tweet) => id !== tweet.id);
+//   showTweets();
+// }
+
 let tweets = [];
-let errorParrafo;
 
-listeners();
-function listeners() {
-  addBtn.addEventListener("click", addTweet);
+document.addEventListener("DOMContentLoaded", () => {
 
-  document.addEventListener("DOMContentLoaded", () => {
-    tweets = JSON.parse(localStorage.getItem("tweetKey")) || [];
 
-    showTweets();
-  });
-}
+  const inputBtn = document.querySelector("#addbtn");
+  const inputText = document.querySelector("#tweet");
 
-function addTweet(e) {
-  e.preventDefault();
+  inputBtn.addEventListener("click", addTweet);
 
-  if (textArea.value.trim() === "") {
-    showError("Esta vacio");
-    return;
-  }
+  function addTweet(e) {
+    e.preventDefault();
+    const tweet = inputText.value
 
-  tweetObj = {
-    id: Date.now(),
-    text: textArea.value,
-  };
-
-  tweets = [...tweets, tweetObj];
-
-  showTweets();
-
-  form.reset();
-}
-
-function showError(mensaje) {
-  if (!errorParrafo) {
-    errorParrafo = document.createElement("P");
-    errorParrafo.textContent = mensaje;
-    errorParrafo.classList.add("error");
-    const container = document.querySelector("#contenido");
-
-    container.appendChild(errorParrafo);
-  }
-
-  limpiarAlerta(errorParrafo);
-}
-
-function limpiarAlerta(parrafo) {
-  const write = document.querySelector("#tweet");
-  write.addEventListener("input", clean);
-
-  function clean(e) {
-    if (e.target.value) {
-      parrafo.remove();
+    if (tweet.trim() === "") {
+      showAlert("esta vacio");
+      return;
     }
+
+    let tweetObj = {
+      id: Date.now(),
+      name: tweet,
+    }
+
+    tweets = [...tweets, tweetObj];
+
+    guardarLocalStorage();
+  }
+});
+
+function showAlert(msg) {
+  const existAlert = document.querySelector(".error");
+
+  if (!existAlert) {
+    const container = document.querySelector(".container");
+    const alert = document.createElement("DIV");
+    const alertP = document.createElement("P");
+    alertP.classList.add("error");
+    alertP.textContent = msg;
+    alert.appendChild(alertP);
+    container.appendChild(alert);
+
+    setTimeout(() => {
+      alert.remove();
+    }, 2000);
   }
 }
 
-function showTweets() {
-  cleanHTML();
-  tweets.forEach((tweet) => {
-    const deleteTweet = document.createElement("A");
-    deleteTweet.textContent = "X";
-    deleteTweet.classList.add("borrar-tweet");
+function guardarLocalStorage() {
+  if(tweets.length > 0){
+    const lista = document.querySelector("#lista-tweets");
+    limpiarHTML(lista);
+    localStorage.setItem("userTweets", JSON.stringify(tweets));
+    console.log(tweets);
+  
+    tweets.forEach((tweet) => {
+      console.log(tweet);
+      console.log(tweet.name);
+      const li = document.createElement("LI");
+      li.textContent = tweet.name;
+      lista.appendChild(li);
+    });
 
-    deleteTweet.onclick = () => {
-      deleteX(tweet.id);
-    };
-
-    let li = document.createElement("LI");
-    li.textContent = tweet.text;
-    listTweets.appendChild(li);
-
-    li.appendChild(deleteTweet);
-  });
-
-  addToLocalStorage();
-  deleteX();
-}
-
-function cleanHTML() {
-  while (listTweets.firstChild) {
-    listTweets.removeChild(listTweets.firstChild);
   }
+
+  // sincronizarStorage()
+
 }
 
-function addToLocalStorage() {
-  localStorage.setItem("tweetKey", JSON.stringify(tweets));
-}
 
-function deleteX(id) {
-  tweets = tweets.filter((tweet) => id !== tweet.id);
-  showTweets();
+// function sincronizarStorage() {
+//   localStorage.setItem("tweets", JSON.stringify(tweets))
+  
+// }
+
+function limpiarHTML(selector) {
+  while (selector.firstChild) {
+    selector.removeChild(selector.firstChild);
+  }
 }
