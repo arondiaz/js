@@ -1,10 +1,11 @@
 import { mostrarAlerta } from "./funciones.js";
-
+import { createClienteApi } from "./API.js";
 (function () {
-  const formulario = document.querySelector("#formulario");
-  formulario.addEventListener("submit", validarCliente);
+  const form = document.querySelector("#formulario");
 
-  function validarCliente(e) {
+  form.addEventListener("submit", crearCliente);
+
+  function crearCliente(e) {
     e.preventDefault();
 
     const nombre = document.querySelector("#nombre").value;
@@ -12,7 +13,6 @@ import { mostrarAlerta } from "./funciones.js";
     const telefono = document.querySelector("#telefono").value;
     const empresa = document.querySelector("#empresa").value;
 
-    // como llave y valor es lo mismo (key: value). Entonces se pone uno solo al declarar el objeto
     const cliente = {
       nombre,
       email,
@@ -20,15 +20,24 @@ import { mostrarAlerta } from "./funciones.js";
       empresa,
     };
 
-    if (validar(cliente)) {
-      mostrarAlerta("Todos los campos son obligatorios");
+    if (validarFormulario(cliente)) {
+      mostrarAlerta("todos los campos son obligatorios");
       return;
     }
-    console.log("se paso la validacion");
-  }
 
-  function validar(obj) {
-    //every, revisa una condicion en todos los elementos.
-    return !Object.values(obj).every((input) => input !== "");
+    createClienteApi(cliente);
+  }
+  function validarFormulario(obj) {
+    // console.log(obj);
+    // return !Object.values(obj).every((input) => input !== "");
+
+    if (
+      obj.nombre === "" ||
+      obj.email === "" ||
+      obj.telefono === "" ||
+      obj.empresa === ""
+    ) {
+      return true;
+    }
   }
 })();
