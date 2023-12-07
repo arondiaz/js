@@ -7,18 +7,15 @@ const carrito = [
   { nombre: "Silla", precio: 549.99 },
 ];
 
-const result = carrito.filter((producto) => {
-  return producto.precio > 400;
-});
+//Menos cantidad de codigo
+const obtenerNombres = (p) => p.nombre;
+
+const result = carrito.map(obtenerNombres);
 
 console.log(result);
 
-//Higher order function
-const mayor400 = (producto) => {
-  return producto.precio > 400;
-};
+///
+const mayor400 = (p) => p.precio > 400;
 
-//una funcion que toma como parametro la funcion
-//con filter creamos un nuevo arreglo, no modificamos el original, en cambio con map si lo modifica.
 const resultado = carrito.filter(mayor400);
 console.log(result);
