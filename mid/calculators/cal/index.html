@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculadora</title>
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button value="/" onclick="operacion(value)">/</button>
+            <button value="7" onclick="operacion(value)">7</button>
+            <button value="8" onclick="operacion(value)">8</button>
+            <button value="9" onclick="operacion(value)">9</button>
+            <button value="*" onclick="operacion(value)">*</button>
+            <button value="4" onclick="operacion(value)">4</button>
+            <button value="5" onclick="operacion(value)">5</button>
+            <button value="6" onclick="operacion(value)">6</button>
+            <button value="-" onclick="operacion(value)">-</button>
+            <button value="1" onclick="operacion(value)">1</button>
+            <button value="2" onclick="operacion(value)">2</button>
+            <button value="3" onclick="operacion(value)">3</button>
+            <button value="+" onclick="operacion(value)">+</button>
+            <button value="0" onclick="operacion(value)">0</button>
+            <button class="equal" onclick=igual()>=</button>
+            <button class="delete" onclick="borrar('')">C</button>
+        </div>
+    </div>
+</body>
+
+</html>

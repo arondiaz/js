@@ -1,0 +1,44 @@
+.container {
+    width: 300px;
+    margin: 50px auto;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.screen {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid gray;
+    border-radius: 12px;
+}
+
+.one, .two, .three, .four {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="button"] {
+    width: 70px;
+    height: 40px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+/* Style the operators differently */
+input[value="+"], input[value="-"], input[value="*"], input[value="/"] {
+    background-color: lightblue;
+    color: #333;
+}
+
+
+input[value="C"], input[value="="] {
+    background-color: lightcoral;
+    color: #fff;
+}
+
