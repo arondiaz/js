@@ -1,8 +1,43 @@
+//cache
+const nombreChache = "apv-v1";
+
+const archivos = [
+  "./",
+  "./index.html",
+  "./css/bootstrap.css",
+  "./css/styles.css",
+  "./js/app.js",
+  "./js/apv.js",
+];
+
 //cuando se instala el service worker, install solo se ejecuta 1 vez al instalarse.
 self.addEventListener("install", (e) => {
   console.log("Instalado el service worker");
-  console.log(e);
+
+  e.waitUntil(
+    caches.open(nombreChache).then((cache) => {
+      console.log("cacheando");
+      cache.addAll(archivos);
+    })
+  );
 });
+
+// this.addEventListener("install", (event) => {
+//   event.waitUntil(
+//     caches
+//       .open("v1")
+//       .then((cache) =>
+//         cache.addAll([
+//           "/",
+//           "/index.html",
+//           // "./css/bootstrap.css",
+//           // "./css/styles.css",
+//           // "./js/app.js",
+//           // "./js/apv.js",
+//         ]),
+//       ),
+//   );
+// });
 
 //activar el service worker
 self.addEventListener("activate", (e) => {
