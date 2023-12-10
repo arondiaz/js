@@ -52,4 +52,10 @@ self.addEventListener("activate", (e) => {
 
 self.addEventListener("fetch", (e) => {
   console.log("Fetch..", e);
+
+  e.respondWith(
+    caches.match(e.request).then((responseCache) => {
+      return responseCache;
+    })
+  );
 });
