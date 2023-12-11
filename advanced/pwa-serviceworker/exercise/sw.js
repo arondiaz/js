@@ -8,6 +8,7 @@ const archivos = [
   "./css/styles.css",
   "./js/app.js",
   "./js/apv.js",
+  "./error.html"
 ];
 
 //cuando se instala el service worker, install solo se ejecuta 1 vez al instalarse.
@@ -43,7 +44,11 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   console.log("service worker activado");
 
-  console.log(e);
+  e.waitUntil(
+    caches.keys().then(keys => {
+      console.log(keys);
+    })
+  )
 });
 
 //PWA se pueden instalar en pc o movil, para eso debe tener un manifest válido, dominio https o localhost y el fetch
@@ -53,9 +58,13 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   console.log("Fetch..", e);
 
+  //para que funcione la pagina de error, hay que poner el proyecto en una carpeta. porque con live server al ser rutas no funciona http://127.0.0.1:5500/advanced/pwa-serviceworker/exercise/index.html 
   e.respondWith(
-    caches.match(e.request).then((responseCache) => {
-      return responseCache;
-    })
+    caches
+      .match(e.request)
+      .then((responseCache) => {
+        return responseCache;
+      })
+      // .catch(() => catches.match("/error.html"))
   );
 });
