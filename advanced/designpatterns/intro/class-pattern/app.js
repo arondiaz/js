@@ -1,4 +1,4 @@
-//Class Patern
+//Class Pattern
 
 class Persona {
   constructor(nombre, email) {
