@@ -1,3 +1,5 @@
+//Mixin Pattern
+//https://www.youtube.com/watch?v=QWVuubrms18
 class Vehiculo {
   constructor(modelo, marca) {
     this.marca = marca;
@@ -15,7 +17,7 @@ const funcionesAutos = {
   },
 };
 
-//Añadir funcionesAutos a la ckase Vehiculo
+//Añadir funcionesAutos a la clase Vehiculo
 Object.assign(Vehiculo.prototype, funcionesAutos);
 
 const auto = new Vehiculo("Ranger", "Ford");
