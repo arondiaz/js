@@ -7,6 +7,9 @@ const app = express();
 
 const port = process.env.PORT || 4000;
 
+// Habilitar PUG template engine
+app.set("view engine", "pug");
+
 //Agregar router
 app.use(router);
 

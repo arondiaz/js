@@ -8,13 +8,9 @@ router.get("/", (req, res) => {
   res.send("Inicio");
 });
 
+// render muestra una vista
 router.get("/nosotros", (req, res) => {
-  res.send("Nostros");
+  res.render("nosotros");
 });
 
-router.get("/contacto", (req, res) => {
-  res.send("Contacto");
-});
-
-
-export default router
+export default router;
