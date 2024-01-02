@@ -2,8 +2,14 @@
 // const express = require("express");
 import express from "express";
 import router from "./routes/index.js";
+import db from "./config/db.js";
 
 const app = express();
+
+//conectar base de datos
+db.authenticate()
+.then(() => console.log("base de datos conectada"))
+.catch(error => console.log(error)) 
 
 const port = process.env.PORT || 4000;
 
