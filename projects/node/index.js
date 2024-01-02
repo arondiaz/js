@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 
   const year = new Date()
   res.locals.actualYear = year.getFullYear()
+  res.locals.nameView = "Agencia de Viajes"
 
   next()
 })
