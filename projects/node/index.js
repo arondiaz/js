@@ -27,6 +27,9 @@ app.use((req, res, next) => {
   next()
 })
 
+//Agrega body-parser para leer datos del formulario
+app.use(express.urlencoded({extended: true}))
+
 
 //Definir carpata publica
 app.use(express.static("public")) 
