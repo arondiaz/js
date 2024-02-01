@@ -1,36 +1,5 @@
-/*Considera una lista/array de ovejas. Cada oveja tiene un nombre y un color. Haz una función que devuelva una lista con todas las ovejas que sean de color rojo y que además su nombre contenga tanto las letras n Y a, sin importar el orden, las mayúsculas o espacios.
 
-Por ejemplo, si tenemos las ovejas: 
-
-const ovejas = [
-  { name: 'Noa', color: 'azul' },
-  { name: 'Euge', color: 'rojo' },
-  { name: 'Navidad', color: 'rojo' },
-  { name: 'Ki Na Ma', color: 'rojo'},
-  { name: 'AAAAAaaaaa', color: 'rojo' },
-  { name: 'Nnnnnnnn', color: 'rojo'}
-]
-
-Al ejecutar el método debería devolver lo siguiente:
-
-const ovejasFiltradas = contarOvejas(ovejas)
-
-console.log(ovejasFiltradas)
-
-// [{ name: 'Navidad', color: 'rojo' },
-//  { name: 'Ki Na Ma', color: 'rojo' }]
-
-*/
-
-export default function contarOvejas(ovejas) {
-    // aquí tu magia
-    return ovejas
-  }
-
-
-
-
-  /*Te ha llegado una carta ✉️ con todos los regalos que debes preparar. El tema es que es una cadena de texto y es muy difícil de leer 😱. ¡Menos mal que han puesto cada regalo separado por espacio! (aunque ten cuidado, porque al ser niños, igual han colado más espacios de la cuenta)
+/*Te ha llegado una carta ✉️ con todos los regalos que debes preparar. El tema es que es una cadena de texto y es muy difícil de leer 😱. ¡Menos mal que han puesto cada regalo separado por espacio! (aunque ten cuidado, porque al ser niños, igual han colado más espacios de la cuenta)
 
 Encima nos hemos dado cuenta que algunas palabras vienen con un _ delante de la palabra, por ejemplo _playstation, que significa que está tachado y no se tiene que contar.
 
@@ -53,18 +22,12 @@ console.log(regalos)
 }
 */
 
+// export default function listGifts(letter) {
+//     // ¡Tú puedes!
+//     return {}
+//    }
 
-export default function listGifts(letter) {
-    // ¡Tú puedes!
-    return {}
-   }
-
-
-
-
-
-
-   /*El Grinch está abriendo las cartas que iban a Santa Claus y las está dejando hechas un lío. 😱
+/*El Grinch está abriendo las cartas que iban a Santa Claus y las está dejando hechas un lío. 😱
 
 Las cartas son una cadena de texto que incluyen regalos y paréntesis ().
 
@@ -86,20 +49,12 @@ Ejemplos:
 Crea una función que pasándole el texto de la carta, devuelva true si es válida y false si no lo es. ¡Y acaba con la travesura del Grinch!
 */
 
+// export default function isValid(letter) {
+//     // ¡No dejes que el Grinch gane!
+//     return true
+//    }
 
-export default function isValid(letter) {
-    // ¡No dejes que el Grinch gane!
-    return true
-   }
-
-
-
-
-
-
-
-
-   /*  ¡Es hora de poner el árbol de navidad en casa! 🎄
+/*  ¡Es hora de poner el árbol de navidad en casa! 🎄
 
 Para ello vamos a crear una función que recibe la altura del árbol, que será un entero positivo del 1 a, como máximo, 100.
 
@@ -128,23 +83,12 @@ __#__
 Ten en cuenta que el árbol es un string y necesitas los saltos de línea \n para cada línea para que se forme bien el árbol.
 */
 
+// export default function createXmasTree(height) {
+//     // ¡Y no olvides también poner los turrones!
+//     return ''
+//   }
 
-export default function createXmasTree(height) {
-    // ¡Y no olvides también poner los turrones!
-    return ''
-  }
-
-
-
-
-
-
-
-
-
-
-
-  /* Con la emoción, ya estamos empezando a contar los días del calendario hasta el 25 de diciembre 📆.
+/* Con la emoción, ya estamos empezando a contar los días del calendario hasta el 25 de diciembre 📆.
 
 Para ayudar a esto, vamos a crear una función que pasándole una instancia de Date nos diga el número de días que faltan.
 
@@ -178,15 +122,12 @@ daysToXmas(date4) // -7
 Por cierto, la fecha de referencia para saber si es 25 de diciembre es Dec 25, 2021.
 */
 
+// export default function daysToXmas(date) {
+//     // ¡Y no olvides compartir tu solución en redes!
+//     return 0
+//   }
 
-export default function daysToXmas(date) {
-    // ¡Y no olvides compartir tu solución en redes!
-    return 0
-  }
-
-
-
-  /* Antes de poder disfrutar de la navidad... nos toca terminar de rematar los exámenes finales. ¡Y toca un poco de matemáticas! 😱
+/* Antes de poder disfrutar de la navidad... nos toca terminar de rematar los exámenes finales. ¡Y toca un poco de matemáticas! 😱
 
 A una función se le pasan dos parámetros: un Array con números y el resultado que se espera.
 
@@ -211,16 +152,12 @@ Una vez que tengas el resultado... ¿cómo podrías hacer que fuese lo más ópt
 
 */
 
-export default function sumPairs(numbers, result) {
-    // ¡Y no olvides compartir tu solución en redes!
-    return null
-  }
+// export default function sumPairs(numbers, result) {
+//     // ¡Y no olvides compartir tu solución en redes!
+//     return null
+//   }
 
-
-
-
-
-  /* Mi amigo Dani está trabajando en una tienda y con la llegada de las navidades tiene el almacén hecho un desastre y no encuentra nada.
+/* Mi amigo Dani está trabajando en una tienda y con la llegada de las navidades tiene el almacén hecho un desastre y no encuentra nada.
 
 Vamos a crear una función contains que recibe dos parámetros: un objeto que define el almacén y el producto que buscamos.
 
@@ -264,14 +201,10 @@ Ten en cuenta que la tienda es enorme. Tiene diferentes almacenes y, como has vi
 
 */
 
-
-export default function contains(store, product) {
-    // ¡Y no olvides compartir tu solución en redes!
-    return false
-  }
-
-
-
+// export default function contains(store, product) {
+//     // ¡Y no olvides compartir tu solución en redes!
+//     return false
+//   }
 
 //   Invertir en criptomonedas es casi un deporte de riesgo. El otro día hackearon Bitmart y ha hecho que el valor de Bitcoin, y otras monedas, bajase un 25%.
 
@@ -280,7 +213,6 @@ export default function contains(store, product) {
 // La lista de precios es un array de números y representa el tiempo de izquierda a derecha. Por lo que ten en cuenta que no puedes comprar a un precio que esté a la derecha de la venta y no puedes vender a un precio que esté a la izquierda de la compra.
 
 // Por ejemplo:
-
 
 /* 
 const pricesBtc = [39, 18, 29, 25, 34, 32, 5]
@@ -303,19 +235,12 @@ maxProfit(pricesAda) = // -> -1 (no hay ganancia posible)
 
 */
 
-export default function maxProfit(prices) {
-    // ¡Y no olvides compartir tu solución en redes!
-    return false
-  }
+// export default function maxProfit(prices) {
+//     // ¡Y no olvides compartir tu solución en redes!
+//     return false
+//   }
 
-
-
-
-
-
-
-
-  /* 
+/* 
   En la fábrica de Papa Noél 🎅 se acerca el día especial... y todavía tenemos un montón de cosas por contar. 😅
 
 Por suerte a Mark Zucktheelf 🧝 se le ha ocurrido crear una función que permita agrupar un array, que puede ser de valores u objetos, a través de una función o de una propiedad.
@@ -347,7 +272,7 @@ Como ves, la función groupBy recibe una colección (array) y una función o una
 La dificultad del reto está más en comprender la función que en la implementación. ¡Suerte!.
   */
 
-export default function groupBy(collection, it) {
-    // ¡No olvides compartir tu solución en redes!
-    return {}
-  }
+// export default function groupBy(collection, it) {
+//     // ¡No olvides compartir tu solución en redes!
+//     return {}
+//   }
