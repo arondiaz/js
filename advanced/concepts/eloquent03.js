@@ -31,7 +31,3 @@
 // }
 
 // console.log(searchMin(15, 15));
-
-
-
-
