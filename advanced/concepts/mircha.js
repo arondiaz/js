@@ -54,6 +54,29 @@ function four(string, num) {
 
 console.log(four("Pepe", 3));
 
+const repetirText = (string, num) => {
+  if (!string) {
+    return console.warn("No hay texto");
+  }
+
+  if (num === undefined) {
+    return console.warn("Debe ingresar un numero");
+  }
+
+  if (num === 0) {
+    return console.log("El numero debe ser mayor a 0");
+  }
+
+  if (Math.sign(num) === -1) {
+    return console.log("El numero no puede ser negativo");
+  }
+
+  let word = (string + " ").repeat(num);
+  return word;
+};
+
+console.log(repetirText("Hola", 3));
+
 function three(string, separador) {
   let res = string.split(separador);
 
