@@ -257,7 +257,7 @@ const parImpar = (num) => {
   return console.log(`El ${num} es impar`);
 };
 
-parImpar(4444);
+// parImpar(4444);
 
 // 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
 
@@ -269,10 +269,33 @@ const grados = (temperatura = undefined, grados = undefined) => {
     : grados !== "C" && grados !== "F"
     ? console.log("Debes ingresar C o F")
     : grados === "C"
-    ? console.log(temperatura * (9 / 5) + 32)
+    ? console.log(Math.round(temperatura * (9 / 5) + 32) + "°C")
     : grados === "F"
-    ? console.log(((temperatura - 32) * 5) / 9)
+    ? console.log(Math.round(((temperatura - 32) * 5) / 9) + "°F")
     : console.log("Vuelve a intentarlo");
 };
 
-grados(3, "C");
+// grados(26, "C");
+
+// 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+// 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+
+const discount = (num, descuento) => {
+  if (!num) {
+    return console.log("Debes ingresar un importe");
+  }
+
+  if (!descuento) {
+    return console.log("Debes ingresar un descuento");
+  }
+
+  if (typeof num !== "number" || typeof descuento !== "number") {
+    return console.log("Debes ingresar números");
+  }
+
+  return console.log(num - (num * descuento) / 100);
+};
+
+discount(69, 0);
+
+// 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
