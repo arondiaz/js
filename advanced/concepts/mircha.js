@@ -99,8 +99,6 @@ function three(string, separador) {
 
 // 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
 
-// 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
-
 /*  */
 
 // function revert(text) {
@@ -177,8 +175,7 @@ function palindromo(text) {
 // 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
 
 function siete(texto) {
-
-  if(!texto){
+  if (!texto) {
     return console.log("texto no existe");
   }
 
@@ -193,8 +190,89 @@ function siete(texto) {
   } else {
     return console.log("No es palindromo");
   }
-
-
 }
 
 // siete("Salas");
+
+// 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+const eliminarCaracteres = (texto, patron) =>
+  !texto
+    ? console.log("No ingresaste el texto")
+    : !patron
+    ? console.log("No ingresaste el patron")
+    : console.log(texto.replace(new RegExp(patron, "ig"), ""));
+
+// eliminarCaracteres("xyz1, xyz2, xyz3", "xyz");
+
+// 9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+
+function aleatory() {
+  return console.log(Math.round(Math.random() * 100) + 500);
+}
+
+// aleatory();
+
+// 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+
+const numReverse = (num) => {
+  if (typeof num !== "number") {
+    return console.log("debe ingresar un numero");
+  }
+
+  num = num.toString();
+
+  let numRev = num.split("").reverse().join("");
+  numRev === num
+    ? console.log(`es capicua, ${true}`)
+    : console.log(`no es capicua, ${false}`);
+};
+
+// numReverse(23232);
+
+// 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+
+// 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+
+// function primo(num) {
+//   if (typeof num !== "number") {
+//     return console.log("debe ingresar un numero");
+//   }
+
+// }
+
+// primo(7)
+
+// 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+
+const parImpar = (num) => {
+  if (typeof num !== "number") {
+    return console.log("debes ingresar un numero");
+  }
+
+  if (num % 2 === 0) {
+    return console.log(`El ${num} es par`);
+  }
+
+  return console.log(`El ${num} es impar`);
+};
+
+parImpar(4444);
+
+// 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+
+const grados = (temperatura = undefined, grados = undefined) => {
+  temperatura === undefined
+    ? console.log("Debes ingresar la temperatura")
+    : grados === undefined
+    ? console.log("Debes ingresar C o F")
+    : grados !== "C" && grados !== "F"
+    ? console.log("Debes ingresar C o F")
+    : grados === "C"
+    ? console.log(temperatura * (9 / 5) + 32)
+    : grados === "F"
+    ? console.log(((temperatura - 32) * 5) / 9)
+    : console.log("Vuelve a intentarlo");
+};
+
+grados(3, "C");
