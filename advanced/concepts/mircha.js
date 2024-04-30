@@ -316,10 +316,6 @@ calculateYears = (fecha = undefined) => {
     : Math.sign(yearHumanos) === 1
     ? console.log(`Han pasado ${yearHumanos} años desde ${fecha.getFullYear()}`)
     : console.log(`Estamos en el año actual ${fecha.getFullYear()}`);
-
-  console.log(hoyMenosFecha);
-  console.log(yearsEnMS);
-  console.log(yearHumanos);
 };
 
 calculateYears(new Date(2024, 4, 23));
@@ -350,4 +346,28 @@ const countVocalsAndConsonants = (palabra) => {
 countVocalsAndConsonants("Hola Mundo");
 
 // 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+const validateName = (fullname) => {
+  const nameLower = fullname.toLowerCase();
+
+  if (/[a-z]+$/.test(nameLower)) {
+    console.log("Nombre válido");
+  } else {
+    console.log("Ingrese un nombre válido");
+  }
+};
+
+validateName("Pepe Argento");
+
 // 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+
+const validateEmail = (email) => {
+  const userEmail = email.toLowerCase();
+
+  if (/^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,})+$/.test(userEmail)) {
+    console.log("Mail válido");
+  } else {
+    console.log("Mail inválido");
+  }
+};
+
+validateEmail("pepe@mail.com");
