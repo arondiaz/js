@@ -21,10 +21,33 @@ function crearDeck() {
       deck.push(especial + tipo);
     }
   }
-  console.log(deck);
+  // console.log(deck);
 
   deck = _.shuffle(deck);
   console.log(deck);
 }
 
 crearDeck();
+
+//Pedir carta
+
+function pedirCarta() {
+  if (deck.length === 0) {
+    throw "No hay más cartas";
+  }
+  const carta = deck.pop();
+
+  console.log(deck);
+
+  return carta;
+}
+
+pedirCarta();
+//Formas para quedarme sin cartas para verificar el error
+
+// deck = []
+
+// for (let i = 0; i <= 70; i++) {
+//   pedirCarta();
+// }
+
