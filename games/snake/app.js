@@ -36,6 +36,7 @@ function startGame() {
 
   updateScore();
   createRandomFood();
+  document.addEventListener("keydown", directionEvent);
 }
 
 const setGame = () => {
@@ -91,4 +92,21 @@ function createRandomFood() {
   const randomEmptySquare =
     emptySquare[Math.floor(Math.random() * emptySquare.length)];
   drawSquare(randomEmptySquare, "foodSquare");
+}
+
+function directionEvent(key) {
+  switch (key.code) {
+    case "ArrowUp":
+      direction != "ArrowDown" && setDirection(key.code);
+      break;
+    case "ArrowDown":
+      direction != "ArrowUp" && setDirection(key.code);
+      break;
+    case "ArrowLeft":
+      direction != "ArrowRigth" && setDirection(key.code);
+      break;
+    case "ArrowRigth":
+      direction != "ArrowLeft" && setDirection(key.code);
+      break;
+  }
 }
