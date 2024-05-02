@@ -37,6 +37,7 @@ function startGame() {
   updateScore();
   createRandomFood();
   document.addEventListener("keydown", directionEvent);
+  moveInternal = setInterval(() => moveSnake(), gameSpeed);
 }
 
 const setGame = () => {
@@ -103,10 +104,52 @@ function directionEvent(key) {
       direction != "ArrowUp" && setDirection(key.code);
       break;
     case "ArrowLeft":
-      direction != "ArrowRigth" && setDirection(key.code);
+      direction != "ArrowRight" && setDirection(key.code);
       break;
-    case "ArrowRigth":
+    case "ArrowRight":
       direction != "ArrowLeft" && setDirection(key.code);
       break;
   }
+}
+
+function setDirection(newDirection) {
+  direction = newDirection;
+}
+
+function moveSnake() {
+  const newSquare = String(
+    Number(snake[snake.length - 1]) + directions[direction]
+  ).padStart(2, "0");
+  const [row, column] = newSquare.split("");
+
+  if (
+    newSquare < 0 ||
+    newSquare > boardSize * boardSize ||
+    (direction === "ArrowRight" && column == 0) ||
+    (direction === "ArrowLeft" && column == 9) ||
+    boardSquares[row][column] === squareTypes.snakeSquare
+  ) {
+    gameOver();
+  } else {
+    snake.push(newSquare);
+    if (boardSquares[row][column] === squareTypes.foodSquare) {
+      addFood();
+    } else {
+      const emptySquare = snake.shift();
+      drawSquare(emptySquare, "emptySquare");
+    }
+    drawSnake();
+  }
+}
+
+const gameOver = () => {
+  gameOverSign.style.display = "block";
+  clearInterval(moveInternal);
+  startButton.disabled = false;
+};
+
+function addFood() {
+  score++;
+  updateScore();
+  createRandomFood();
 }
