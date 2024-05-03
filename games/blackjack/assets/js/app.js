@@ -16,6 +16,8 @@ const btnPedir = document.querySelector("#btnPedir");
 const btnNuevo = document.querySelector("#btnNuevo");
 const btnDetener = document.querySelector("#btnDetener");
 const marcadorPuntosJugador = document.querySelectorAll("small");
+const jugadorCartas = document.querySelector("#jugador-cartas");
+const computadoraCartas = document.querySelector("#computadora-cartas");
 
 function crearDeck() {
   for (let i = 2; i <= 10; i++) {
@@ -78,5 +80,9 @@ btnPedir.addEventListener("click", () => {
 
   marcadorPuntosJugador[0].innerText = puntosJugador;
 
-  console.log(puntosJugador);
+  const nuevaCarta = document.createElement("img");
+  nuevaCarta.classList = "carta";
+  nuevaCarta.src = `./assets/${carta}.png`;
+
+  jugadorCartas.appendChild(nuevaCarta);
 });
