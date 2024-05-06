@@ -35,6 +35,7 @@ function crearDeck() {
 
   deck = _.shuffle(deck);
   console.log(deck);
+  return deck;
 }
 
 crearDeck();
@@ -131,4 +132,23 @@ btnDetener.addEventListener("click", () => {
   btnDetener.disabled = true;
   btnPedir.disabled = true;
   turnoComputadora(puntosJugador);
+});
+
+btnNuevo.addEventListener("click", () => {
+  console.clear();
+
+  deck = [];
+  deck = crearDeck();
+
+  puntosJugador = 0;
+  puntosComputadora = 0;
+
+  marcadorPuntos[0].innerText = 0;
+  marcadorPuntos[1].innerText = 0;
+
+  jugadorCartas.innerHTML = "";
+  computadoraCartas.innerHTML = "";
+
+  btnDetener.disabled = false;
+  btnPedir.disabled = false;
 });
