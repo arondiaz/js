@@ -87,7 +87,6 @@ btnPedir.addEventListener("click", () => {
   jugadorCartas.appendChild(nuevaCarta);
 
   if (puntosJugador > 21) {
-    console.error("Perdiste");
     btnPedir.disabled = true;
     turnoComputadora(puntosJugador);
   } else if (puntosJugador === 21) {
@@ -111,7 +110,21 @@ function turnoComputadora(puntosMinimos) {
     nuevaCarta.src = `./assets/${carta}.png`;
 
     computadoraCartas.appendChild(nuevaCarta);
-  } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
+  } while (puntosComputadora <= puntosMinimos && puntosMinimos <= 21);
+
+  setTimeout(() => {
+    if (puntosMinimos === 21 && puntosComputadora === 21) {
+      alert("Empate");
+    } else if (puntosMinimos === 21) {
+      alert("Blackjack");
+    } else if (puntosMinimos > 21) {
+      alert("Computadora gana");
+    } else if (puntosComputadora > 21) {
+      alert("Jugador gana");
+    } else {
+      alert("Computadora gana");
+    }
+  }, 100);
 }
 
 btnDetener.addEventListener("click", () => {
