@@ -48,7 +48,6 @@ function pedirCarta() {
   }
   const carta = deck.pop();
 
-  console.log(deck);
 
   return carta;
 }
@@ -70,7 +69,7 @@ function valorCarta(carta) {
 
 const valor = valorCarta(pedirCarta());
 
-console.log(valor);
+
 
 //Eventos
 
