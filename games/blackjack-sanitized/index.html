@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script src="./assets/js/underscore.js"></script>
-    <script defer src="./assets/js/app.js"></script>
+
     <title>Blackjack 21</title>
 </head>
 
@@ -20,9 +19,9 @@
 
     <div class="row mt-2">
         <div class="col text-center">
-            <button  id="btnNuevo" class="btn btn-danger">Nuevo Juego</button>
-            <button  id="btnPedir" class="btn btn-primary">Pedir carta</button>
-            <button  id="btnDetener" class="btn btn-primary">Detener</button>
+            <button id="btnNuevo" class="btn btn-danger">Nuevo Juego</button>
+            <button id="btnPedir" disabled="disabled" class="btn btn-primary">Pedir carta</button>
+            <button id="btnDetener" disabled="disabled" class="btn btn-primary">Detener</button>
         </div>
 
     </div>
@@ -30,8 +29,8 @@
     <div class="row container">
         <div class="col">
             <h1>Jugador 1 - <small>0</small></h1>
-            <div id="jugador-cartas">
-               
+            <div id="jugador-cartas" class="divCartas">
+
             </div>
         </div>
 
@@ -40,7 +39,7 @@
     <div class="row container mt-2">
         <div class="col">
             <h1>Computadora - <small>0</small></h1>
-            <div id="computadora-cartas">
+            <div id="computadora-cartas" class="divCartas">
                 <!-- <img class="carta" src="assets/2C.png" alt="">
                 <img class="carta" src="assets/2C.png" alt="">
                 <img class="carta" src="assets/2C.png" alt=""> -->
@@ -48,6 +47,15 @@
         </div>
 
     </div>
+    <script src="./assets/js/underscore.js"></script>
+    <script src="./assets/js/app.js"></script>
+
+    <script>
+        document.querySelector("#btnNuevo").addEventListener("click", () => {
+            appCompleta.nuevoJuego();
+        })
+    </script>
+
 </body>
 
 </html>
