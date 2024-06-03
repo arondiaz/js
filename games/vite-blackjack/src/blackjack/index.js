@@ -1,6 +1,7 @@
 import _ from "underscore";
 import {crearDeck} from "./usecases/crear-deck"
 import {pedirCarta} from "./usecases/pedir-carta"
+import { valorCarta } from "./usecases/valor-carta";
 
 /*
 2C = Clubs
@@ -49,11 +50,6 @@ const appCompleta = (() => {
 
   pedirCarta(deck);
 
-  function valorCarta(carta) {
-    const valor = carta.substring(0, carta.length - 1);
-
-    return isNaN(valor) ? (valor === "A" ? 11 : 10) : Number(valor);
-  }
 
   const valor = valorCarta(pedirCarta(deck));
 
