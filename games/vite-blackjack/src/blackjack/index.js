@@ -1,5 +1,6 @@
 import _ from "underscore";
 import {crearDeck} from "./usecases/crear-deck"
+import {pedirCarta} from "./usecases/pedir-carta"
 
 /*
 2C = Clubs
@@ -46,16 +47,7 @@ const appCompleta = (() => {
 
   inicializarJuego();
 
-
-
-  function pedirCarta() {
-    if (deck.length === 0) {
-      throw "No hay más cartas";
-    }
-    return deck.pop();
-  }
-
-  pedirCarta();
+  pedirCarta(deck);
 
   function valorCarta(carta) {
     const valor = carta.substring(0, carta.length - 1);
@@ -63,7 +55,7 @@ const appCompleta = (() => {
     return isNaN(valor) ? (valor === "A" ? 11 : 10) : Number(valor);
   }
 
-  const valor = valorCarta(pedirCarta());
+  const valor = valorCarta(pedirCarta(deck));
 
   //Turno: 0= primer jugador y el ultimo sera la computadora
   const acumularPuntos = (carta, turno) => {
@@ -102,7 +94,7 @@ const appCompleta = (() => {
   //Eventos
 
   btnPedir.addEventListener("click", () => {
-    const carta = pedirCarta();
+    const carta = pedirCarta(deck);
 
     const puntosJugador = acumularPuntos(carta, 0);
 
@@ -120,7 +112,7 @@ const appCompleta = (() => {
   function turnoComputadora(puntosMinimos) {
     let puntosComputadora = 0;
     do {
-      const carta = pedirCarta();
+      const carta = pedirCarta(deck);
 
       puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
       crearCarta(carta, puntosJugadores.length - 1);
@@ -135,9 +127,9 @@ const appCompleta = (() => {
     turnoComputadora(puntosJugadores[0]);
   });
 
-  // btnNuevo.addEventListener("click", () => {
-  //   inicializarJuego();
-  // });
+  btnNuevo.addEventListener("click", () => {
+    inicializarJuego();
+  });
 
   return {
     nuevoJuego: inicializarJuego,
